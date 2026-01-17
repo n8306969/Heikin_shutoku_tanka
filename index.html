@@ -28,8 +28,18 @@
             margin-bottom: 15px;
             font-size: 22px;
         }
+        .input-section {
+            display: flex;
+            gap: 8px;
+        }
+        .input-group-wrapper {
+            flex: 1;
+        }
         .input-group {
             margin-bottom: 12px;
+        }
+        .input-group:last-child {
+            margin-bottom: 0;
         }
         label {
             display: block;
@@ -61,13 +71,14 @@
         }
         .button-group {
             display: flex;
-            gap: 10px;
-            margin-top: 10px;
-            justify-content: center;
+            flex-direction: column;
+            gap: 6px;
+            justify-content: flex-end;
+            padding-bottom: 0;
         }
         .zero-button {
-            padding: 8px 20px;
-            font-size: 16px;
+            padding: 12px 14px;
+            font-size: 15px;
             font-weight: bold;
             background-color: #4CAF50;
             color: white;
@@ -75,6 +86,8 @@
             border-radius: 5px;
             cursor: pointer;
             transition: background-color 0.3s;
+            white-space: nowrap;
+            height: 38px;
         }
         .zero-button:hover {
             background-color: #45a049;
@@ -112,24 +125,28 @@
     <div class="container">
         <h1>平均取得単価計算</h1>
 
-        <div class="input-group">
-            <label for="shares">売買した株数</label>
-            <input type="number" id="shares" placeholder="例: 100" min="0" step="1">
-        </div>
+        <div class="input-section">
+            <div class="input-group-wrapper">
+                <div class="input-group">
+                    <label for="shares">売買した株数</label>
+                    <input type="number" id="shares" placeholder="例: 100" min="0" step="1">
+                </div>
 
-        <div class="input-group">
-            <label for="newCost">新規建代金 (円)</label>
-            <input type="number" id="newCost" placeholder="例: 150000" min="0" step="0.01">
-        </div>
+                <div class="input-group">
+                    <label for="newCost">新規建代金 (円)</label>
+                    <input type="number" id="newCost" placeholder="例: 150000" min="0" step="0.01">
+                </div>
 
-        <div class="input-group">
-            <label for="repaymentCost">返済代金 (円)</label>
-            <input type="number" id="repaymentCost" placeholder="例: 155000" min="0" step="0.01">
-        </div>
+                <div class="input-group">
+                    <label for="repaymentCost">返済代金 (円)</label>
+                    <input type="number" id="repaymentCost" placeholder="例: 155000" min="0" step="0.01">
+                </div>
+            </div>
 
-        <div class="button-group">
-            <button class="zero-button" onclick="addZeros('00')">00</button>
-            <button class="zero-button" onclick="addZeros('000')">000</button>
+            <div class="button-group">
+                <button class="zero-button" onclick="addZeros('00')">00</button>
+                <button class="zero-button" onclick="addZeros('000')">000</button>
+            </div>
         </div>
 
         <div class="result">
