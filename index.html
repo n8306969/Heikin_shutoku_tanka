@@ -95,6 +95,25 @@
         .zero-button:active {
             background-color: #3d8b40;
         }
+        .clear-button {
+            padding: 12px 14px;
+            font-size: 15px;
+            font-weight: bold;
+            background-color: #f44336;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+            white-space: nowrap;
+            height: 38px;
+        }
+        .clear-button:hover {
+            background-color: #d32f2f;
+        }
+        .clear-button:active {
+            background-color: #c62828;
+        }
         .result {
             margin-top: 12px;
             padding: 12px;
@@ -146,6 +165,7 @@
             <div class="button-group">
                 <button class="zero-button" onclick="addZeros('00')">00</button>
                 <button class="zero-button" onclick="addZeros('000')">000</button>
+                <button class="clear-button" onclick="clearAll()">クリア</button>
             </div>
         </div>
 
@@ -197,6 +217,17 @@
             }
         }
 
+        // クリアボタンの機能
+        function clearAll() {
+            sharesInput.value = '';
+            newCostInput.value = '';
+            repaymentCostInput.value = '';
+            avgNewPriceDisplay.textContent = '-';
+            avgRepaymentPriceDisplay.textContent = '-';
+            profitLossDisplay.textContent = '-';
+            lastFocusedInput = null;
+        }
+
         function calculate() {
             const shares = parseFloat(sharesInput.value);
             const newCost = parseFloat(newCostInput.value);
@@ -207,10 +238,10 @@
                 const avgRepaymentPrice = repaymentCost / shares;
                 const totalProfitLoss = repaymentCost - newCost;
 
-                avgNewPriceDisplay.textContent = Math.round(avgNewPrice);
-                avgRepaymentPriceDisplay.textContent = Math.round(avgRepaymentPrice);
+                avgNewPriceDisplay.textContent = avgNewPrice.toFixed(1);
+                avgRepaymentPriceDisplay.textContent = avgRepaymentPrice.toFixed(1);
 
-                profitLossDisplay.textContent = Math.round(totalProfitLoss);
+                profitLossDisplay.textContent = totalProfitLoss.toFixed(1);
                 profitLossDisplay.style.color = totalProfitLoss >= 0 ? '#4CAF50' : '#f44336';
             } else {
                 avgNewPriceDisplay.textContent = '-';
